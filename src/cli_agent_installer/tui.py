@@ -54,7 +54,7 @@ class TaskWidget(ListItem):
         Args:
             task: Task to display
         """
-        self.task = task
+        self._task = task
         status_icon = {
             TaskStatus.PENDING: "○",
             TaskStatus.RUNNING: "●",
@@ -66,6 +66,11 @@ class TaskWidget(ListItem):
         super().__init__(
             Static(f"{status_icon} {task.name} ({int(task.progress)}%)"),
         )
+
+    @property
+    def task(self) -> Task:
+        """Get task."""
+        return self._task
 
 
 class StepWidget(ListItem):
