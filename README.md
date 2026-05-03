@@ -10,6 +10,10 @@
 - ✅ **Preserve user data** (data/, config/, .venv/ never touched)
 - ✅ **Modular & reusable** — install once, use everywhere
 - ✅ **Easy to adopt** — one command to initialize
+- ✅ **Checklist system** for task-based installation with validation
+- ✅ **Structured logging** with timestamps and audit trails (JSON/CSV export)
+- ✅ **TUI interface** (Textual) for visual management
+- ✅ **REST API** (FastAPI) with WebSocket for progress updates
 
 ## 📦 Installation
 
@@ -106,6 +110,53 @@ installer version ~/my-project --remote # Show latest GitHub release
 | `preserve` | Globs for files to never delete |
 | `dependencies` | Dependencies to verify |
 | `services` | Services to manage (optional) |
+
+## 🖥️ TUI Interface
+
+Interactive terminal UI for visual project management.
+
+```bash
+installer tui ~/my-project
+```
+
+**Keybindings:**
+- `q` - Quit
+- `l` - Open log screen
+- `s` - Open status screen
+- `Enter` - Run checklist
+
+**Features:**
+- Visual task/step progress display
+- Real-time log viewer
+- Export logs from TUI (JSON/CSV)
+- Progress bar with percentage
+- Color-coded status indicators
+
+## 🌐 REST API
+
+FastAPI-based REST API for remote management.
+
+```bash
+# Start server
+installer serve --host 0.0.0.0 --port 8000
+
+# Or manually
+uvicorn cli_agent_installer.api:app --reload
+```
+
+**Endpoints:**
+- `GET /health` - Health check
+- `POST /projects/{path}/checklists/run` - Run checklist (async)
+- `GET /projects/{path}/checklists` - List checklists
+- `GET /projects/{path}/checklists/{id}` - Get checklist details
+- `POST /projects/{path}/checklists/{id}/resume` - Resume checklist
+- `GET /projects/{path}/logs` - Get logs (filtered)
+- `GET /projects/{path}/logs/export` - Export logs (JSON/CSV)
+- `GET /projects/{path}/status` - Get project status
+- `WS /ws/checklists/{id}` - WebSocket for progress updates
+
+**Documentation:**
+Open `http://localhost:8000/docs` for auto-generated OpenAPI/Swagger UI.
 
 ## 🔧 How It Works
 
