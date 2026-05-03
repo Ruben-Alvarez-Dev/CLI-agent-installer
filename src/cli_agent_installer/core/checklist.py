@@ -243,12 +243,8 @@ class ChecklistEngine:
         # Task 7: Verification
         verify_task = Task(name="verification", description="Verify installation")
         verify_task.add_step(Step(name="verify_files", description="Verify all files present"))
-        verify_task.add_step(
-            Step(name="verify_services", description="Verify services running")
-        )
-        verify_task.add_step(
-            Step(name="verify_version", description="Verify version matches manifest"
-        )
+        verify_task.add_step(Step(name="verify_services", description="Verify services running"))
+        verify_task.add_step(Step(name="verify_version", description="Verify version matches manifest"))
         self.add_task(verify_task)
 
     def run(

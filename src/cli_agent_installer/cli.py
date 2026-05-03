@@ -138,13 +138,13 @@ def _run_direct(
 ) -> None:
     """Run installation without checklist (legacy behavior)."""
     # Detect mode
-    version_manager = VersionManager(project_path, logger)
+    version_manager = VersionManager(project_path)
     mode = version_manager.detect_mode()
 
     click.echo(f"  Mode: {mode}")
 
     # Check for updates
-    latest = version_manager.get_latest_github_version()
+    latest = version_manager.get_remote_version()
     current = version_manager.get_local_version()
     click.echo(f"  Current: {current}")
     click.echo(f"  Latest: {latest}")
@@ -220,12 +220,12 @@ def check(ctx, project_dir):
     logger = StructuredLogger(project_path)
 
     # Version manager
-    version_manager = VersionManager(project_path, logger)
+    version_manager = VersionManager(project_path)
 
     # Get versions
     local = version_manager.get_local_version()
     git = version_manager.get_git_version()
-    remote = version_manager.get_latest_github_version()
+    remote = version_manager.get_remote_version()
 
     # Display
     click.echo(f"📊 Version check for {project_path.name}")
@@ -254,12 +254,12 @@ def version(ctx, project_dir):
     project_path = Path(project_dir).resolve()
     logger = StructuredLogger(project_path)
 
-    version_manager = VersionManager(project_path, logger)
+    version_manager = VersionManager(project_path)
 
     click.echo(f"Version information for {project_path.name}")
     click.echo(f"\n  Local:    {version_manager.get_local_version()}")
     click.echo(f"  Git:      {version_manager.get_git_version()}")
-    click.echo(f"  Remote:   {version_manager.get_latest_github_version()}")
+    click.echo(f"  Remote:   {version_manager.get_remote_version()}")
 
 
 @cli.group()
@@ -441,3 +441,6 @@ def serve(ctx, host, port, reload):
 
 if __name__ == "__main__":
     cli()
+
+# Export for installer script
+main = cli
