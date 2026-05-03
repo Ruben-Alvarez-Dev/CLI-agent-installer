@@ -47,7 +47,7 @@ dev = [
 ]
 
 [project.scripts]
-installer = "cli_agent_installer.cli:main"
+CLI-agent-installer = "cli_agent_installer.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/Ruben-Alvarez-Dev/CLI-agent-installer"

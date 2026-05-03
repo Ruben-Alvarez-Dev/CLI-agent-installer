@@ -30,7 +30,7 @@ from .core.manifest import Manifest
 
 
 @click.group()
-@click.version_option(version="2.0.0", prog_name="installer")
+@click.version_option(version="2.0.0", prog_name="CLI-agent-installer")
 @click.option("--verbose", "-v", is_flag=True, help="Enable verbose output")
 @click.option("--log-level", type=click.Choice(["DEBUG", "INFO", "WARNING", "ERROR"]), default="INFO", help="Log level")
 @click.pass_context
