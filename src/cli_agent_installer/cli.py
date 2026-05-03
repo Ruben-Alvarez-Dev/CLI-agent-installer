@@ -13,6 +13,8 @@ import json
 from pathlib import Path
 from typing import Optional
 
+# Import Path for type hinting (already imported above)
+
 from .core import (
     VersionManager,
     ManifestManager,
@@ -394,6 +396,27 @@ def logs(ctx, project_dir, checklist_id, output, format):
             click.echo(
                 f"  {log.timestamp} [{level_icon}] {log.type.value}: {log.message}"
             )
+
+
+@cli.command()
+@click.argument("project_dir", type=click.Path())
+@click.pass_context
+def tui(ctx, project_dir):
+    """Launch TUI interface for project management.
+
+    Requires textual to be installed.
+    """
+    project_path = Path(project_dir).resolve()
+
+    click.echo(f"🖥️  Launching TUI for {project_path.name}")
+
+    try:
+        from .tui import run_tui
+        run_tui(project_path)
+    except ImportError:
+        click.echo("❌ Textual not installed")
+        click.echo("   Install with: pip install textual")
+        click.exit(1)
 
 
 @cli.command()
