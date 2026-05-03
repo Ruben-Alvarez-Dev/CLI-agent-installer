@@ -33,7 +33,7 @@ pip install -e .
 
 ```bash
 cd ~/my-project
-installer init . --repo "username/project-name"
+CLI-agent-installer init . --repo "username/project-name"
 ```
 
 This creates:
@@ -44,7 +44,7 @@ This creates:
 ### 2. Install/update project
 
 ```bash
-installer run ~/my-project
+CLI-agent-installer run ~/my-project
 ```
 
 Performs:
@@ -58,7 +58,7 @@ Performs:
 ### 3. Check for updates
 
 ```bash
-installer check ~/my-project
+CLI-agent-installer check ~/my-project
 ```
 
 Compares local version with latest GitHub release.
@@ -66,9 +66,9 @@ Compares local version with latest GitHub release.
 ### 4. Print version
 
 ```bash
-installer version ~/my-project          # Show all versions
-installer version ~/my-project --git    # Show git tag version
-installer version ~/my-project --remote # Show latest GitHub release
+CLI-agent-installer version ~/my-project          # Show all versions
+CLI-agent-installer version ~/my-project --git    # Show git tag version
+CLI-agent-installer version ~/my-project --remote # Show latest GitHub release
 ```
 
 ## 📋 Manifest Configuration
@@ -116,7 +116,7 @@ installer version ~/my-project --remote # Show latest GitHub release
 Interactive terminal UI for visual project management.
 
 ```bash
-installer tui ~/my-project
+CLI-agent-installer tui ~/my-project
 ```
 
 **Keybindings:**
@@ -138,7 +138,7 @@ FastAPI-based REST API for remote management.
 
 ```bash
 # Start server
-installer serve --host 0.0.0.0 --port 8000
+CLI-agent-installer serve --host 0.0.0.0 --port 8000
 
 # Or manually
 uvicorn cli_agent_installer.api:app --reload
@@ -170,10 +170,10 @@ PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 INSTALL_DIR="${1:-$HOME/my-project}"
 
 if command -v installer &>/dev/null; then
-    installer run "$INSTALL_DIR"
+    CLI-agent-installer run "$INSTALL_DIR"
 else
     curl -fsSL https://raw.githubusercontent.com/.../install.sh | bash
-    installer run "$INSTALL_DIR"
+    CLI-agent-installer run "$INSTALL_DIR"
 fi
 ```
 
@@ -211,7 +211,7 @@ pip install CLI-agent-installer
 rm -rf install/
 
 # 3. Initialize new installer
-installer init . --repo "Ruben-Alvarez-Dev/your-project"
+CLI-agent-installer init . --repo "Ruben-Alvarez-Dev/your-project"
 
 # 4. Commit changes
 git add install.sh install/manifest.json
@@ -224,10 +224,10 @@ git commit -m "feat: switch to CLI-agent-installer"
 
 ```bash
 # Dry-run mode (no changes)
-installer run ~/my-project --dry-run
+CLI-agent-installer run ~/my-project --dry-run
 
 # Test with custom source
-installer run ~/my-project --source ~/my-repo-checkout
+CLI-agent-installer run ~/my-project --source ~/my-repo-checkout
 ```
 
 ## 📚 Examples
@@ -236,14 +236,14 @@ installer run ~/my-project --source ~/my-repo-checkout
 
 ```bash
 cd ~/my-python-project
-installer init . --repo "myuser/myproject"
-installer run .
+CLI-agent-installer init . --repo "myuser/myproject"
+CLI-agent-installer run .
 ```
 
 ### Example 2: Check for updates in existing project
 
 ```bash
-installer check ~/my-existing-project
+CLI-agent-installer check ~/my-existing-project
 # Output: Local: 1.0.0 | Remote: v1.1.0
 #         ⚠️  Update available
 ```
@@ -252,7 +252,7 @@ installer check ~/my-existing-project
 
 ```bash
 # Delete and re-sync (preserves data)
-installer run ~/my-project
+CLI-agent-installer run ~/my-project
 ```
 
 ## 🛠️ Development

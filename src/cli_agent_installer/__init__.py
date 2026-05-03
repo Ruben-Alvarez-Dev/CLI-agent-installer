@@ -10,8 +10,8 @@ Usage:
     installer run ~/my-project        # Install/update project
     installer check ~/my-project      # Check for updates
     installer version ~/my-project    # Print version
-    installer tui ~/my-project        # Launch TUI interface
-    installer serve                   # Start REST API server
+    CLI-agent-installer tui ~/my-project        # Launch TUI interface
+    CLI-agent-installer serve                   # Start REST API server
 """
 
 __version__ = "2.0.0"
