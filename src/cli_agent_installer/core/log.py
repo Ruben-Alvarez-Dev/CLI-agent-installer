@@ -234,6 +234,7 @@ class StructuredLogger:
             extra=task_extra,
             checklist_id=checklist_id,
             task_name=task_name,
+            step_name=None,  # Tasks don't have step_name
         )
 
     def log_step(
