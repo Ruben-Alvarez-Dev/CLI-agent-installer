@@ -24,6 +24,7 @@ from .core import (
     LogType,
     Task,
     Step,
+    TaskStatus,
 )
 from .core.manifest import Manifest
 
