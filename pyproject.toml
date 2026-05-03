@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "CLI-agent-installer"
+version = "2.0.0"
+description = "Generic installer/updater for Python projects with checklist-based installation, structured logging, TUI, and REST API"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+    {name = "Ruben Alvarez", email = "ruben@example.com"}
+]
+keywords = [
+    "installer",
+    "updater",
+    "version-management",
+    "python-projects",
+    "cli"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Build Tools",
+]
+dependencies = [
+    "click>=8.1",
+    "requests>=2.31",
+    "pydantic>=2.5",
+    "pyyaml>=6.0",
+    "textual>=0.80.0",  # TUI (Charm Textual)
+    "fastapi>=0.115.0",  # REST API
+    "uvicorn[standard]>=0.30.0",  # ASGI server
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "black>=23.0",
+    "ruff>=0.1",
+]
+
+[project.scripts]
+installer = "cli_agent_installer.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Ruben-Alvarez-Dev/CLI-agent-installer"
+Repository = "https://github.com/Ruben-Alvarez-Dev/CLI-agent-installer"
+Issues = "https://github.com/Ruben-Alvarez-Dev/CLI-agent-installer/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
