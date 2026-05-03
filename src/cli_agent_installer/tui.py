@@ -63,14 +63,14 @@ class TaskWidget(ListItem):
             TaskStatus.SKIPPED: "−",
         }.get(task.status, "?")
 
-        super().__init__(
-            Static(f"{status_icon} {task.name} ({int(task.progress)}%)"),
-        )
+        # Store task data as simple attributes to avoid property issues
+        self.task_name = task.name
+        self.task_progress = task.progress
+        self.task_status = task.status
 
-    @property
-    def task(self) -> Task:
-        """Get task."""
-        return self._task
+        super().__init__(
+            Static(f"{status_icon} {self.task_name} ({int(self.task_progress)}%)"),
+        )
 
 
 class StepWidget(ListItem):
